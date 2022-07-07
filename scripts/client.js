@@ -5,7 +5,19 @@ var call = null;
 var stream = null;
 var tracker = null;
 var trackerTask = null;
-
+tracking.ColorTracker.registerColor('red', function(r, g, b) {
+  if (r>100 && r>g*2 && r>b*2) {
+    return true;
+  }
+  return false;
+});
+tracking.ColorTracker.registerColor('black', function(r, g, b) {
+  let y = 0.2126*r + 0.7152*g + 0.0722*b
+  if (y < 200) {
+    return true;
+  }
+  return false;
+});
 
 var obj = {
   nom: "Montre à Quartz",
@@ -13,6 +25,16 @@ var obj = {
     {
       nom: "Bracelet",
       couleur: "yellow",
+      active: true
+    },
+    {
+      nom: "Coque",
+      couleur: "red",
+      active: true
+    },
+    {
+      nom: "Arriere",
+      couleur: "black",
       active: true
     }
   ]
